@@ -34,7 +34,7 @@ app.use(bodyParser.json())
 
 // Express Session middleware
 app.use(session({
-    secret: '',
+    secret: 'xinchaocaccau',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true}
