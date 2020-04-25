@@ -4,7 +4,6 @@ var mongoose = require('mongoose')
 var config = require('./config/database')
 var bodyParser = require('body-parser')
 var session = require('express-session')
-// var expressValidator = require('express-validator')
 
 // Connect db
 mongoose.connect(config.database)
@@ -25,6 +24,9 @@ app.set('view engine', 'ejs')
 // Set public folder
 app.use(express.static(path.join(__dirname, 'public')))
 
+// Set global errors variable
+app.locals.errors = null
+
 // Body Parser middleware
 //
 // parse application/x-www-form-urlencoded
@@ -39,24 +41,6 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: true}
 }))
-
-// Express validator middleware
-// app.use(expressValidator({
-//     errorFormatter: function(param, msg, value){
-//         var namespace = param.split('.')
-//         , root = namespace.shift()
-//         , formParam = root
-
-//         while(namespace.length){
-//             formParam += '[' + namespace.shift() + ']'
-//         }
-//         return {
-//             param: formParam, 
-//             msg  : msg, 
-//             value: value
-//         }
-//     }
-// }))
 
 // Express Messages middleware
 app.use(require('connect-flash')())

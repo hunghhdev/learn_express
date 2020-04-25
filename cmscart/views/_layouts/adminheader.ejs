@@ -34,7 +34,12 @@
 
     <div class="container">
     <%- messages('messages', locals)%>
-
-      
+    <% if (errors) {%>
+      <% for (let indexError in errors) { %>
+        <div class="alert alert-danger">
+          <%= errors[indexError].msg %>
+        </div>
+      <% } %>
+    <% } %>      
 
     
