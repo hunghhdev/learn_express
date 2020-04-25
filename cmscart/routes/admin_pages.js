@@ -9,7 +9,11 @@ var Page = require('../models/page')
  * Get page index
  */
 router.get('/', function (req, res) {
-    res.send('admin zone')
+    Page.find({}).sort({sorting: 1}).exec(function(err, pages){
+        res.render('admin/pages',{
+            pages: pages
+        })
+    })
 })
 
 /*
@@ -62,7 +66,7 @@ router.post('/add-page', [
                         title: title, 
                         slug: slug,
                         content: content,
-                        sorting: 0
+                        sorting: 100
                     })
 
                     page.save(function(err){
